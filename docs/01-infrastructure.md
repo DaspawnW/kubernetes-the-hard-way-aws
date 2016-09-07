@@ -178,7 +178,7 @@ aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --query 'Reservati
 
 Get ips
 ```
-$controller0_ip=`aws ec2 describe-instances --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=controller0" --query 'Reservations[].Instances[].PublicIpAddress' --output text`
+controller0_ip=`aws ec2 describe-instances --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=controller0" --query 'Reservations[].Instances[].PublicIpAddress' --output text`
 ```
 
 Connect
