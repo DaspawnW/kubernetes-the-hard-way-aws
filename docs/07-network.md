@@ -51,12 +51,12 @@ Use `awscli` to add the routes to VPC:
 vpcId=`aws ec2 describe-vpcs --filters Name=tag:Name,Values=Kubernetes --query Vpcs[0].VpcId --output text`
 tableId=`aws ec2 describe-route-tables --filters Name=vpc-id,Values=$vpcId --query RouteTables[0].RouteTableId --output text`
 
-worker0_id=`aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --filter Name=tag:Name,Values=worker2 --query 'Reservations[].Instances[].InstanceId' --output text`
-aws ec2 create-route --route-table-id $tableId  --destination-cidr-block 172.18.0.0/24 --instance-id $worker0_id
+worker0_id=`aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --filter Name=tag:Name,Values=worker0 --query 'Reservations[].Instances[].InstanceId' --output text`
+aws ec2 create-route --route-table-id $tableId --destination-cidr-block 172.18.0.0/24 --instance-id $worker0_id
 
-worker1_id=`aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --filter Name=tag:Name,Values=worker2 --query 'Reservations[].Instances[].InstanceId' --output text`
-aws ec2 create-route --route-table-id $tableId  --destination-cidr-block 172.18.1.0/24 --instance-id $worker1_id
+worker1_id=`aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --filter Name=tag:Name,Values=worker1 --query 'Reservations[].Instances[].InstanceId' --output text`
+aws ec2 create-route --route-table-id $tableId --destination-cidr-block 172.18.1.0/24 --instance-id $worker1_id
 
 worker2_id=`aws ec2 describe-instances --filter Name=vpc-id,Values=$vpcId --filter Name=tag:Name,Values=worker2 --query 'Reservations[].Instances[].InstanceId' --output text`
-aws ec2 create-route --route-table-id $tableId  --destination-cidr-block 172.18.2.0/24 --instance-id $worker2_id
+aws ec2 create-route --route-table-id $tableId --destination-cidr-block 172.18.2.0/24 --instance-id $worker2_id
 ```
