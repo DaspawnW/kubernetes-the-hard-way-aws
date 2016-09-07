@@ -193,7 +193,7 @@ scp file ubuntu@$controller0_ip:
 
 Function to retrieve ip via shell alias
 ```
-echo 'aws_ip () { aws ec2 describe-instances --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$1" --query "Reservations[].Instances[].PublicIpAddress" --output text }' >> ~/.aliases
+echo 'aws_ip () { aws ec2 describe-instances --filter "Name=vpc-id,Values=$vpcId" "Name=tag:Name,Values=$1" --query "Reservations[].Instances[].PublicIpAddress" --output text; }' >> ~/.aliases
 source ~/.aliases
 ```
 
